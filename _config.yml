@@ -4,3 +4,5 @@ plugins:
 # SITE CONFIGURATION
 baseurl: ""
 url: "https://adamaguir.github.io/"
+
+theme: jekyll-theme-midnight
