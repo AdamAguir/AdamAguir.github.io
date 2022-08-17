@@ -4,6 +4,40 @@
 
 Simple website that uses a Database and php to play hangman.
 
+https://github.com/AdamAguir/PHPHangman
+
+````
+    $index = $_SESSION["wordIndex"];
+    $sql = "SELECT WORD_VALUE FROM Word WHERE ID = '$index'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $word = $row["WORD_VALUE"];
+        }
+    }
+````
+
+This code uses php to fetch data from a database. From there it compares the word to what is in
+the player has previously guessed. The guessed letters are stored in the session. The next code
+snippet does the actual compare.
+
+````
+for ($index = 0; $index < $length; $index++) {
+            if(strlen($_SESSION["letters"]) > 0){
+                foreach ($lettersGuessed as $char) {
+                    if (strpos($wordArray, $char, $offset = 0)) {
+                        if ($word[$index] == $char) {
+                            $displayWord[$index] = $char;
+                        }
+                    } else if(!strpos($wrongGuesses, $char, $offset = 0)){
+                          $wrongGuesses .= $char;
+                    }
+                }
+            }
+        }
+````
+
 ## Bank App
 
 A Bank application created in asp.net core. It uses Entity Framework to connect the Database
@@ -30,6 +64,8 @@ https://github.com/Alex-Bedoya/CS3750BankApp
 ````
 
 This code creates an html element for each account associated with the user. It is the primary display for the uer's bank account, and also includes a way to view a detailed account view.
+
+![BankApp](img/BankApp.png)
 
 ## Stock Market Game
 
@@ -106,6 +142,12 @@ https://github.com/Alex-Bedoya/PlazmaStockGame
         };
 
 ````
+
+This code uses a resource called Highcharts. It is something you can import into your aplication. This section creates the values
+seen in the graph. The player can also interact with the graph and use it as a form of input. This action also changes the values
+in the text box and the slider to the same values.
+
+![StockMarketGame](img/StockMarketGame.png)
 
 ## Boggle Game
 
