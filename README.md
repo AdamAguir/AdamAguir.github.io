@@ -112,3 +112,58 @@ https://github.com/Alex-Bedoya/PlazmaStockGame
 A Blazor application that utalizes an api for words and SignalR for communication between players.
 
 https://github.com/AdamAguir/PlazmaELGGOB
+
+````
+public Task SendMessage(string user, string points)
+        {
+            return Clients.All.SendAsync("RecieveMessage", user, points);
+        }
+````
+
+This is the code that goes in the hub class that transmits the message to the other users.
+
+````
+  protected override async Task OnInitializedAsync()
+    {
+
+        hubConnection = new HubConnectionBuilder()
+        .WithUrl(navManager.ToAbsoluteUri("/pointhub"))
+        .WithAutomaticReconnect()
+        .Build();
+
+        // this is where we capture data coming back.
+        hubConnection.On<string, string>("RecieveMessage", (user, points) =>
+        {
+            var formattedMessage = $"{user} scored {points} points!";
+            messeges.Add(formattedMessage);
+            InvokeAsync(StateHasChanged);
+        });
+
+        // this is the timer hub
+        hubConnection.On<int>("UpdateTimer", (timeRemaning) =>
+        {
+
+        });
+
+        hubConnection.On<GameHistory>("RecieveHistory", (sendHistory) =>
+        {
+            opponetHistory = sendHistory;
+            InvokeAsync(StateHasChanged);
+        });
+
+        // start timer
+
+        hubConnection.On("StartTimer", () =>
+        {
+            if (aTimer == null)
+            {
+                StartTimer();
+            }
+        });
+
+
+        await hubConnection.StartAsync();
+    }
+
+````
+Using this block you can capture incomming data from the hub and then utilize it in the way needed.
