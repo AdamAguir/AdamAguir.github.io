@@ -113,6 +113,8 @@ A Blazor application that utalizes an api for words and SignalR for communicatio
 
 https://github.com/AdamAguir/PlazmaELGGOB
 
+![BoggleGame](img/BoggleGame.png)
+
 ````
 public Task SendMessage(string user, string points)
         {
@@ -167,3 +169,6 @@ This is the code that goes in the hub class that transmits the message to the ot
 
 ````
 Using this block you can capture incomming data from the hub and then utilize it in the way needed.
+
+
+![BoggleResults](img/BoggleResults.png)
