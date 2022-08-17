@@ -37,6 +37,76 @@ The Stock Market game uses ajax methods to refresh the display based on user inp
 
 https://github.com/Alex-Bedoya/PlazmaStockGame
 
+````
+  function DrawBuyChart() {
+            var purchase = 0;
+            var adjustAmount = moneyRemaining;
+            buyChart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'buyChart',
+                    animation: false
+                },
+                title: {
+                    text: 'Buy Stock Transaction'
+                },
+                xAxis: {
+                    categories: ['Purchase Total', 'Your Available Funds']
+                },
+                plotOptions: {
+                    series: {
+                        point: {
+                            events: {
+                                drag: function(e) {
+                                    // Returning false stops the drag and drops. Example:
+                                    //if (this.series.yData[0] >= @Model.CurrMoney) {
+                                    //    this.y = @Model.CurrMoney;
+                                    //    this.series.yData[0] = @Model.CurrMoney;
+                                    //    return false;
+                                    //}
+                                    if (this.category == "Purchase Total") {
+                                        purchase = this.series.yData[0];
+                                        adjustAmount = moneyRemaining - purchase;
+                                    }
+                                    if (this.category == "Your Available Funds") {
+                                        purchase = moneyRemaining - this.series.yData[1];
+                                        adjustAmount = this.series.yData[1];
+                                    }
+                                    //$('#drag').html(
+                                    //    'Dragging <b>' + this.series.name + '</b>, <b>' + this.category + '</b> to <b>' + purchase.toFixed(2) + '</b> adjusted: <b>' + adjustAmount.toFixed(2) + '</b>');
+                                },
+                                drop: function() {
+                                    this.series.setData([purchase, adjustAmount]);
+                                    var stockDifferance = purchase / stockPrice;
+                                    document.getElementById('txtBuyQuantity').value = stockDifferance.toFixed(2);
+                                    //var percent = (purchase / moneyRemaining) * 100;
+                                    document.getElementById('buyRange').value = stockDifferance;
+                                }
+                            }
+                        },
+                        stickyTracking: false
+                    },
+                    column: {
+                        stacking: 'normal'
+                    },
+                    line: {
+                        cursor: 'ns-resize'
+                    }
+                },
+                tooltip: {
+                    yDecimals: 2
+                },
+                series: [{
+                    data: [purchase, adjustAmount - purchase],
+                    draggableY: true,
+                    dragMinY: 0,
+                    type: 'column',
+                    minPointLength: 2
+                }]
+            });
+        };
+
+````
+
 ## Boggle Game
 
 A Blazor application that utalizes an api for words and SignalR for communication between players.
