@@ -211,6 +211,8 @@ This is the code that goes in the hub class that transmits the message to the ot
 
 ````
 Using this block you can capture incomming data from the hub and then utilize it in the way needed.
+In our case to capture the messeges sent between players and eventually the game comparing to the
+players opponet.
 
 
 ![BoggleResults](img/BoggleResults.png)
