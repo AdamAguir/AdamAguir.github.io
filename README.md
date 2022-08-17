@@ -1,4 +1,4 @@
-# AdamAguir.github.io
+# Adam Aguirre's Project Portfolio
 
 ## Hangman
 
