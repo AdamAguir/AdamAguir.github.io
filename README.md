@@ -4,7 +4,7 @@
 
 Simple website that uses a Database and php to play hangman.
 
-https://github.com/AdamAguir/PHPHangman
+[a link]https://github.com/AdamAguir/PHPHangman
 
 ````
     $index = $_SESSION["wordIndex"];
@@ -42,7 +42,7 @@ for ($index = 0; $index < $length; $index++) {
 
 A Bank application created in asp.net core. It uses Entity Framework to connect the Database
 
-https://github.com/Alex-Bedoya/CS3750BankApp
+[a link]https://github.com/Alex-Bedoya/CS3750BankApp
 
 ````
  foreach (Account account in Model.Accounts)
@@ -71,7 +71,7 @@ This code creates an html element for each account associated with the user. It 
 
 The Stock Market game uses ajax methods to refresh the display based on user inputs.
 
-https://github.com/Alex-Bedoya/PlazmaStockGame
+[a link]https://github.com/Alex-Bedoya/PlazmaStockGame
 
 ````
   function DrawBuyChart() {
@@ -153,7 +153,7 @@ in the text box and the slider to the same values.
 
 A Blazor application that utalizes an api for words and SignalR for communication between players.
 
-https://github.com/AdamAguir/PlazmaELGGOB
+[a link]https://github.com/AdamAguir/PlazmaELGGOB
 
 ![BoggleGame](img/BoggleGame.png)
 
